@@ -104,7 +104,10 @@ export async function scanPage(inputUrl, { onPageReady } = {}) {
     const screenshotFile = path.join(SCREENSHOT_DIR, "latest_scan.png");
     await page.screenshot({ path: screenshotFile, fullPage: true });
 
-    // 6. Let other modules inspect the live page (DOM extraction comes next step).
+    // Compact above-the-fold JPEG for AI vision (small and cheap to send).
+    const viewportImage = await page.screenshot({ type: "jpeg", quality: 70 });
+
+    // 6. Let other modules inspect the live page.
     const extra = onPageReady ? await onPageReady(page) : undefined;
 
     return {
@@ -112,6 +115,7 @@ export async function scanPage(inputUrl, { onPageReady } = {}) {
       title: await page.title(),
       status_code: response ? response.status() : null,
       screenshot: "storage/screenshots/latest_scan.png",
+      viewport_image: viewportImage,
       extra,
     };
   } finally {
