@@ -1,0 +1,19 @@
+{
+  "name": "qa-vision-ai-backend",
+  "version": "0.1.0",
+  "description": "Backend for QA Vision AI - AI-powered website analysis and QA automation",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "openai": "^7.47.0",
+    "playwright": "^1.64.1"
+  }
+}
