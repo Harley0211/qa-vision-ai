@@ -68,7 +68,7 @@ export async function askText({ instructions, input, maxOutputTokens = 2000 }) {
     }
     if (err.status === 404) {
       throw new AiError(
-        "Model not found (404). Check AI_MODEL and AI_BASE_URL in .env.",
+        `Not found (404): ${err.message}. Check AI_MODEL and AI_BASE_URL in .env.`,
         500,
       );
     }
